@@ -1,0 +1,260 @@
+﻿<Page x:Class="suzhou.pages.mould"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+      xmlns:geared="clr-namespace:LiveCharts.Geared;assembly=LiveCharts.Geared"
+      xmlns:vm="clr-namespace:suzhou.ViewModel"
+      xmlns:local="clr-namespace:suzhou.pages"
+      mc:Ignorable="d" 
+      Foreground="White"
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="order">
+
+      <!--
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+      xmlns:geared="clr-namespace:LiveCharts.Geared;assembly=LiveCharts.Geared"
+      -->
+
+    <Page.DataContext>
+        <vm:ScrollableViewModel></vm:ScrollableViewModel>
+    </Page.DataContext>
+    
+    <Grid>
+        <Grid Margin="0,100,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <!--全平台信息汇总-->
+            <StackPanel Grid.Row="0" Grid.RowSpan="1" VerticalAlignment="top" Height="300">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="/image/background/bc1.png">
+                    </ImageBrush>
+                </StackPanel.Background>
+                <TextBlock x:Name="company_name" Text="全平台信息汇总" FontSize="24" Margin="20,10,10,10"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="总企业数" FontSize="24" Margin="30,20,0,10"/>
+                    <TextBlock x:Name="CP_sum" Grid.Column="1" Text="" FontSize="24" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="总设备数" FontSize="24" Margin="30,10,0,10"/>
+                    <TextBlock x:Name="EQP_sum" Grid.Column="1" Text="" FontSize="24" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="总订单数" FontSize="24" Margin="30,10,0,10"/>
+                    <TextBlock x:Name="Order_sum" Grid.Column="1" Text="" FontSize="24" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="执行订单数" FontSize="24" Margin="30,10,0,10"/>
+                    <TextBlock x:Name="EXE_Order" Grid.Column="1" Text="" FontSize="24" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                </Grid>
+            </StackPanel>
+            <!--查询模块-->
+            <StackPanel Grid.Row="1" Grid.RowSpan="2" Margin="0,10,0,0" Width="auto">
+
+                <StackPanel.Background>
+                    <ImageBrush
+                        ImageSource="/image/background/bc2.png"
+                        ></ImageBrush>
+                </StackPanel.Background>
+                <TextBlock Text="查询模块" FontSize="24" Margin="20,15,10,10" />
+                <TextBlock Text="企业查询" FontSize="24" Margin="30,20,10,10"/>
+                <DockPanel Width="auto">
+                    <TextBox DockPanel.Dock="Left" Text="" FontSize="28" Margin="30,10,10,10" Width="240" Height="50" Name="et1"/>
+                    <Button DockPanel.Dock="Right" Content="搜索" FontSize="24" Margin="0,5,10,5" Width="70" Height="50" Click="company_Search_Click"/>
+                </DockPanel>
+                <TextBlock Text="订单查询" FontSize="24" Margin="30,10,10,10"/>
+                <DockPanel Width="auto">
+                    <TextBox DockPanel.Dock="Left" Text="" FontSize="28" Margin="30,10,10,10" Width="240" Height="50" Name="et2"/>
+                    <Button DockPanel.Dock="Right" Content="搜索" FontSize="24" Margin="0,5,10,5" Width="70" Height="50" Click="order_Search_Click"/>
+                </DockPanel>
+                <TextBlock Text="模具查询" FontSize="24" Margin="30,10,10,10" />
+                <DockPanel Width="auto">
+                    <TextBox DockPanel.Dock="Left" Text="" FontSize="28" Margin="30,10,10,10" Width="240" Height="50" Name="et3"/>
+                    <Button DockPanel.Dock="Right" Content="搜索" FontSize="24" Margin="0,5,10,5" Width="70" Height="50" Click="mould_Search_Click"/>
+                </DockPanel>
+                <TextBlock Text="物流查询" FontSize="24" Margin="30,10,10,10"/>
+                <DockPanel Width="auto">
+                    <TextBox DockPanel.Dock="Left" Text="" FontSize="28" Margin="30,10,10,10" Width="240" Height="50" Name="et4"/>
+                    <Button DockPanel.Dock="Right" Content="搜索" FontSize="24" Margin="0,5,10,5" Width="70" Height="50" Click="logistics_Search_Click"/>
+                </DockPanel>
+            </StackPanel>
+
+            <!--模具列表-->
+            <Grid Grid.Row="0" Grid.RowSpan="2"  Grid.Column="3" HorizontalAlignment="Center" Width="309">
+                <Grid.Background>
+                    <ImageBrush
+                        ImageSource="/image/background/bc3.png"
+                        ></ImageBrush>
+                </Grid.Background>
+                <TextBlock Text="模具列表" FontSize="24" Margin="20,15,10,10"/>
+                <ScrollViewer VerticalScrollBarVisibility="auto" Margin="0,60,5,20">
+                    <StackPanel x:Name="mouldlist"></StackPanel>
+                </ScrollViewer>
+            </Grid>
+
+
+            <!--界面滚动条-->
+            <ScrollViewer Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Hidden">
+                <!--模具信息报表-->
+                <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2" Margin="10,0,10,0">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/image/background/bc_frame.png"></ImageBrush>
+                    </Grid.Background>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="240"/>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <DockPanel Grid.Row="0" Grid.ColumnSpan="2" Margin="0,25,0,0">
+                        <TextBlock FontSize="30" Margin="400,0,0,0">模具-</TextBlock>
+                        <TextBlock x:Name="mould_ID" FontSize="30" >088e38663330</TextBlock>
+                        <TextBlock FontSize="30" >-【性能概况】</TextBlock>
+                    </DockPanel>
+
+                    <DockPanel Grid.Row="1" Grid.Column="0">
+                        <TextBlock DockPanel.Dock="Top" FontSize="24" HorizontalAlignment="Center">性能参数</TextBlock>
+                        <Border BorderBrush="Black" BorderThickness="1" Height="106" Width="556" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,10,0,0" RenderTransformOrigin="0.514,1">
+                            <StackPanel Margin="0">
+                                <DockPanel DockPanel.Dock="Left" Margin="10,10,10,10">
+                                    <TextBlock FontSize="24">平均效率（%）</TextBlock>
+                                    <TextBlock x:Name="LstEf" FontSize="24" Width="80" Margin="0,0,10,0">xxx</TextBlock>
+
+                                    <TextBlock FontSize="24"  Margin="10,0,0,0">平均周期时间（s）</TextBlock>
+                                    <TextBlock x:Name="LstAv" FontSize="24" Width="80">xxx</TextBlock>
+                                </DockPanel>
+
+                                <DockPanel DockPanel.Dock="Left" Margin="10,10,10,10">
+                                    <TextBlock FontSize="24">当前效率（%）</TextBlock>
+                                    <TextBlock x:Name="MdEf" FontSize="24" Width="80" Margin="0,0,10,0">xxx</TextBlock>
+
+                                    <TextBlock FontSize="24"  Margin="10,0,0,0">当前周期时间（s）</TextBlock>
+                                    <TextBlock x:Name="MdAv" FontSize="24" Width="80">xxx</TextBlock>
+                                </DockPanel>
+
+                            </StackPanel>
+                        </Border>
+
+                    </DockPanel>
+                    <DockPanel Grid.Row="1" Margin="50,160,0,0">
+                        <TextBlock FontSize="24">查询开始日期</TextBlock>
+                        <DatePicker x:Name="start" FontSize="22" Width="160" HorizontalAlignment="Left" Margin="20,0,0,5"></DatePicker>
+                    </DockPanel>
+                    <DockPanel Grid.Row="1" Margin="50,200,0,0">
+                        <TextBlock FontSize="24">查询结束日期</TextBlock>
+                        <DatePicker x:Name="end" FontSize="22" Width="160" HorizontalAlignment="Left" Margin="20,0,0,5"></DatePicker>
+                    </DockPanel>
+
+                    <DockPanel Grid.Row="1" Margin="0,195,40,0" HorizontalAlignment="Right">
+                        <Button Width="100" Height="40" FontSize="24" Click="query_Confirm_Click">确定</Button>
+                    </DockPanel>
+
+                    <DockPanel Grid.Row="1" Grid.Column="1">
+                        <TextBlock DockPanel.Dock="Top" FontSize="24" HorizontalAlignment="Center">模具产能</TextBlock>
+                        <Border BorderBrush="Black" BorderThickness="1" Height="156" Width="556" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,10,10,0" RenderTransformOrigin="0.514,1">
+                            <StackPanel>
+                                <DockPanel DockPanel.Dock="Left" Margin="10,10,10,10">
+                                    <TextBlock FontSize="24">怠速时速（min）</TextBlock>
+                                    <TextBlock x:Name="idlingTB" FontSize="24" Width="100" Margin="0,0,10,0">xxx</TextBlock>
+
+                                    <TextBlock FontSize="24"  Margin="20,0,0,0">预防性维修</TextBlock>
+                                    <TextBlock x:Name="fixCountTB" FontSize="24" Width="80">xxx</TextBlock>
+                                </DockPanel>
+
+                                <DockPanel DockPanel.Dock="Left" Margin="10,10,10,10">
+                                    <TextBlock FontSize="24">稼动时数（min）</TextBlock>
+                                    <TextBlock x:Name="workingTB" FontSize="24" Width="100" Margin="0,0,10,0" HorizontalAlignment="Left">xxx</TextBlock>
+
+                                    <TextBlock FontSize="24"  Margin="20,0,15,0">生产模次</TextBlock>
+                                    <TextBlock x:Name="mouldCountTB" FontSize="24" Width="80" HorizontalAlignment="Left">xxx</TextBlock>
+                                </DockPanel>
+
+                                <DockPanel DockPanel.Dock="Left" Margin="10,10,10,10">
+                                    <TextBlock FontSize="24">拆除累计时间（min）</TextBlock>
+                                    <TextBlock x:Name="removedTB" FontSize="24" Width="100" HorizontalAlignment="Left">xxx</TextBlock>
+                                </DockPanel>
+
+                            </StackPanel>
+                        </Border>
+                    </DockPanel>
+
+                    <!--占位-->
+                    <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Margin="20,0,20,40">
+                        
+                        <lvc:CartesianChart Zoom="X" DisableAnimations="True" Hoverable="True" Series="{Binding SeriesCollection}" Margin="20,0,0,10" Height ="260">
+                            <lvc:CartesianChart.Resources>
+                                <Style TargetType="geared:GLineSeries">
+                                    <Setter Property="StrokeThickness" Value="2"></Setter>
+                                    <Setter Property="Stroke" Value="#FFB300"></Setter>
+                                    <Setter Property="Fill" Value="#21FFB300"></Setter>
+                                    <Setter Property="LineSmoothness" Value="0"></Setter>
+                                    <Setter Property="PointForeground" Value="#FFB300"></Setter>
+                                </Style>
+                            </lvc:CartesianChart.Resources>
+
+                            <lvc:CartesianChart.AxisX>
+                                <lvc:Axis Labels="{Binding xStick}" Separator="{x:Static lvc:DefaultAxes.CleanSeparator}" FontSize="14" Foreground="White"/>
+                            </lvc:CartesianChart.AxisX>
+                            <lvc:CartesianChart.AxisY>
+                                <lvc:Axis Title="秒" FontSize="14" Foreground="White"/>
+                            </lvc:CartesianChart.AxisY>
+                        </lvc:CartesianChart>
+
+                        <!--柱状图-->
+                        <lvc:CartesianChart Series="{Binding SeriesCollection2}" LegendLocation="Top" Margin="20,10,40,20" Height="280">
+                            <lvc:CartesianChart.AxisX>
+                                <lvc:Axis Labels="{Binding barStick}" FontSize="14" Foreground="White"></lvc:Axis>
+                            </lvc:CartesianChart.AxisX>
+                            <lvc:CartesianChart.AxisY>
+                                <lvc:Axis Title="分钟" FontSize="14" Foreground="White"></lvc:Axis>
+                            </lvc:CartesianChart.AxisY>
+                        </lvc:CartesianChart>
+
+                        <TextBlock FontSize="24" TextAlignment="Center">【IP地址更改警告/Removed状态汇总】</TextBlock>
+                        <DataGrid AutoGenerateColumns="False" Margin="6" Width="900" Height="200" ItemsSource="{Binding alarmList}" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding ID}" Header="模具ID" Width="*"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Date}" Header="发生时间" Width="*"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Type}" Header="类型" Width="*"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+
+                </Grid>
+            </ScrollViewer>
+
+        </Grid>
+    </Grid>
+</Page>

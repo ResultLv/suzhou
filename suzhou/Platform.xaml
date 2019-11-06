@@ -1,0 +1,76 @@
+﻿<Window x:Class="suzhou.Platform"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:suzhou"
+        mc:Ignorable="d"
+        Background="#03290a"
+        Foreground="White"
+        WindowState="Maximized"
+        Title="苏州协同智能制造创新中心" Height="1080" Width="1920"
+        WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+
+    <Grid>
+        <Grid Grid.Row="0" VerticalAlignment="Top" Margin="0,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid.Background>
+                <ImageBrush ImageSource="/image/background/meau.png" ></ImageBrush>
+                <!--<SolidColorBrush Color="#2B2B2B"></SolidColorBrush>-->
+            </Grid.Background>
+
+            <Image Source="/image/background/logo.jpg" Height="70" Margin="30,0,0,0"/>
+            <TextBlock Grid.Column="1" MouseLeftButtonDown="home_Click" FontSize="28" Margin="80,20,80,20" VerticalAlignment="Center" TextAlignment="Center" MouseEnter="home_enter" MouseLeave="home_leave" Name="home">首页</TextBlock>
+            <TextBlock Grid.Column="2" MouseLeftButtonDown="firm_Click" FontSize="28" Margin="80,20,80,20"  VerticalAlignment="Center" TextAlignment="Center" MouseEnter="firm_enter" MouseLeave="firm_leave" Name="firm">企业</TextBlock>
+            <TextBlock Grid.Column="3" MouseLeftButtonDown="order_Click" FontSize="28" Margin="80,20,80,20" VerticalAlignment="Center" TextAlignment="Center" MouseEnter="order_enter" MouseLeave="order_leave" Name="order">订单</TextBlock>
+            <TextBlock Grid.Column="4" MouseLeftButtonDown="mould_Click" FontSize="28" Margin="80,20,80,20" VerticalAlignment="Center" TextAlignment="Center" MouseEnter="mould_enter" MouseLeave="mould_leave" Name="mould">模具</TextBlock>
+            <TextBlock Grid.Column="5" MouseLeftButtonDown="logistics_Click" FontSize="28" Margin="80,20,80,20" VerticalAlignment="Center" TextAlignment="Center" MouseEnter="logistics_enter" MouseLeave="logistics_leave" Name="logistics"></TextBlock>
+            <StackPanel Grid.Column="6" DockPanel.Dock="Right" VerticalAlignment="Center" Margin="0,10,20,10">
+                <TextBlock x:Name="txt_Time" Text="时间" FontSize="24"  Margin="0,0,20,0" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock x:Name="txt_User" Text="XXX,欢迎您！" FontSize="24" Margin="0,5,20,0"/>
+                    <Button x:Name="btn_Logout" HorizontalContentAlignment="Center" Content="注销" Width="80" FontSize="20" Margin="0,10,20,0" Click="btn_Logout_Click"/>
+                </StackPanel>
+            </StackPanel>
+
+        </Grid>
+        <!--顶部不变栏-->
+        <!--<DockPanel Grid.ColumnSpan="4" Height="154" VerticalAlignment="Top">
+            --><!--公司Logo--><!--
+            <StackPanel>
+                <Image Source="/image/logo.jpg" Height="150" Margin="30,0,0,0"/>
+            </StackPanel>
+            --><!--右侧信息栏--><!--
+            <StackPanel DockPanel.Dock="Right" VerticalAlignment="Bottom" Margin="0,0,0,20">
+                <TextBlock x:Name="txt_Time" Text="时间" FontSize="24" Margin="5,0,30,5" />
+                <TextBlock x:Name="txt_User" Text="XXX,欢迎您！" FontSize="24" Margin="5,5,30,0"/>
+                <Button x:Name="btn_Logout" Content="注销" Width="80" FontSize="20" Margin="60,10,0,5" Click="btn_Logout_Click"/>
+            </StackPanel>
+            --><!--公司名称--><!--
+            <StackPanel DockPanel.Dock="Top">
+                <TextBlock Text="苏州智能制造协同创新中心" TextAlignment="Center" FontSize="64" Margin="10"></TextBlock>
+                <Image Source="/image/name.jpg" Height="100"/>
+            </StackPanel>
+            --><!--菜单栏--><!--
+            <Menu DockPanel.Dock="Top" Margin="5,0,110,0">
+                <MenuItem Header="首页" FontSize="40" Margin="20,0,0,0" Click="home_Click"/>
+                <MenuItem Header="企业" FontSize="40" Margin="30,0,0,0" Click="firm_Click"/>
+                <MenuItem Header="订单" FontSize="40" Margin="30,0,0,0" Click="order_Click"/>
+                <MenuItem Header="模具" FontSize="40" Margin="30,0,0,0" Click="mould_Click"/>
+                <MenuItem Header="物流" FontSize="40" Margin="30,0,0,0" Click="logistics_Click"/>
+            </Menu>
+        </DockPanel>-->
+        
+        <!--Frame框架，用于显示page-->
+        <Frame x:Name="framePage" Source="./pages/home.xaml" NavigationUIVisibility="Hidden" Margin="0,0,0,0" />
+    </Grid>
+</Window>

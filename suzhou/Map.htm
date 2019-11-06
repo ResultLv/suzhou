@@ -1,0 +1,117 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>基本地图展示</title>
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css" />
+    <script src="http://cache.amap.com/lbs/static/es5.min.js"></script>
+    <script src="http://webapi.amap.com/maps?v=1.4.5&key=6eac1c38333ea684af1ab6654d253d25"></script>
+    <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+
+    <!--弹出框样式-->
+    <style type="text/css">
+        body, html, #container {
+            height: 100%;
+            margin: 0px;
+            font: 12px Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', Arial;
+        }
+
+        .info-title {
+            color: white;
+            font-size: 20px;
+            background-color: rgba(0,155,255,0.8);
+            line-height: 26px;
+            padding: 10px 10px 10px 6px;
+            font-weight: lighter;
+            letter-spacing: 1px
+        }
+
+        .info-content {
+            padding: 8px;
+            color: #666666;
+            line-height: 18px;
+            font-size: 16px;
+        }
+
+            .info-content img {
+                float: left;
+                margin: 3px;
+            }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+
+    <!-- saved from url=(0013)about:internet -->
+
+    <script>
+        var map = new AMap.Map('container', {
+            resizeEnable: true,
+            zoom: 15,
+            center: [120.58319, 31.29834]  // 苏州市中心
+        });
+
+        var infoWindow = new AMap.InfoWindow();
+        function allCompany(CP_longitude, CP_latitude, CP_name, CP_tpnumber, CP_address) {
+            var lnglats = [CP_longitude, CP_latitude];
+            marker = new AMap.Marker({
+                position: lnglats,
+                title: CP_name,
+                map: map
+            });
+            marker.position = lnglats;
+            marker.name = CP_name;
+            marker.contact = CP_tpnumber;
+            marker.address = CP_address;
+            var content = '<div class="info-title">' + CP_name + '</div>' +
+                '<div class="info-content">' + "联系电话：" + CP_tpnumber + '</div>' +
+                '<div class="info-content">' + "联系地址：" + CP_address + '</div>';
+            marker.on('click', markerClick);
+
+            infoWindow.setContent(content);
+        }
+
+        // Marker点击事件
+        function markerClick(e) {
+            var content = '<div class="info-title">' + e.target.name + '</div>' +
+                '<div class="info-content">' + "联系电话：" + e.target.contact + '</div>' +
+                '<div class="info-content">' + "联系地址：" + e.target.address + '</div>';
+            map.setCenter(e.target.position);
+            map.setFitView(e);
+            infoWindow.setContent(content);
+            infoWindow.open(map, e.target.getPosition());
+        }
+
+        function addCompany(CP_longitude, CP_latitude, CP_name, CP_tpnumber, CP_address) {
+            var lnglats = [CP_longitude, CP_latitude];
+            marker = new AMap.Marker({
+                position: lnglats,
+                title: CP_name,
+                map: map
+            });
+            marker.position = lnglats;
+            marker.name = CP_name;
+            marker.contact = CP_tpnumber;
+            marker.address = CP_address;
+            var content = '<div class="info-title">' + CP_name + '</div>' +
+                '<div class="info-content">' + "联系电话：" + CP_tpnumber + '</div>' +
+                '<div class="info-content">' + "联系地址：" + CP_address + '</div>';
+            map.setCenter(marker.position);
+            map.setZoom(12);
+            marker.on('click', markerClick);
+            infoWindow.setContent(content);
+            infoWindow.open(map, marker.getPosition());
+        }
+
+        // 加载完成后拉到地图中心
+        function setCenter() {
+            map.setZoom(12);
+            map.setCenter([120.59803, 31.26596]);
+            map.setFitView;
+        }
+
+    </script>
+</body>
+</html>

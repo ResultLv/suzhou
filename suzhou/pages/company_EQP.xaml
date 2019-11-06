@@ -1,0 +1,338 @@
+﻿<Page x:Class="suzhou.pages.company_EQP"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+       xmlns:tk="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+      xmlns:local="clr-namespace:suzhou.pages"
+      mc:Ignorable="d" 
+      Foreground="White"
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="platform" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid Margin="0,100,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <!--企业信息汇总-->
+            <StackPanel Grid.Row="0" Grid.RowSpan="1" VerticalAlignment="top" Height="300">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="/image/background/bc1.png">
+                    </ImageBrush>
+                </StackPanel.Background>
+                <TextBlock x:Name="company_name" Text="企业统计信息汇总" FontSize="24" Margin="20,10,10,10"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="订单数" FontSize="24" Margin="30,20,0,10"/>
+                    <TextBlock x:Name="ord_num" Grid.Column="1" Text="0" FontSize="24" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="设备数" FontSize="24" Margin="30,10,0,10"/>
+                    <TextBlock x:Name="eqp_num" Grid.Column="1" Text="0" FontSize="24" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="运行设备数" FontSize="24" Margin="30,10,0,10"/>
+                    <TextBlock x:Name="excute_ord_num" Grid.Column="1" Text="0" FontSize="24" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                </Grid>
+            </StackPanel>
+            <!--查询模块-->
+            <StackPanel Grid.Row="1" Grid.RowSpan="2" Margin="0,10,0,0" Width="auto">
+
+                <StackPanel.Background>
+                    <ImageBrush
+                        ImageSource="/image/background/bc2.png"
+                        ></ImageBrush>
+                </StackPanel.Background>
+                <TextBlock Text="查询模块" FontSize="24" Margin="20,15,10,10" />
+                <TextBlock Text="企业查询" FontSize="24" Margin="30,20,10,10"/>
+                <DockPanel Width="auto">
+                    <TextBox DockPanel.Dock="Left" Text="" FontSize="28" Margin="30,10,10,10" Width="240" Height="50" Name="et1"/>
+                    <Button DockPanel.Dock="Right" Content="搜索" FontSize="24" Margin="0,5,10,5" Width="70" Height="50" Click="company_Search_Click"/>
+                </DockPanel>
+                <TextBlock Text="订单查询" FontSize="24" Margin="30,10,10,10"/>
+                <DockPanel Width="auto">
+                    <TextBox DockPanel.Dock="Left" Text="" FontSize="28" Margin="30,10,10,10" Width="240" Height="50" Name="et2"/>
+                    <Button DockPanel.Dock="Right" Content="搜索" FontSize="24" Margin="0,5,10,5" Width="70" Height="50" Click="order_Search_Click"/>
+                </DockPanel>
+                <TextBlock Text="模具查询" FontSize="24" Margin="30,10,10,10" />
+                <DockPanel Width="auto">
+                    <TextBox DockPanel.Dock="Left" Text="" FontSize="28" Margin="30,10,10,10" Width="240" Height="50" Name="et3"/>
+                    <Button DockPanel.Dock="Right" Content="搜索" FontSize="24" Margin="0,5,10,5" Width="70" Height="50" Click="mould_Search_Click"/>
+                </DockPanel>
+                <TextBlock Text="物流查询" FontSize="24" Margin="30,10,10,10"/>
+                <DockPanel Width="auto">
+                    <TextBox DockPanel.Dock="Left" Text="" FontSize="28" Margin="30,10,10,10" Width="240" Height="50" Name="et4"/>
+                    <Button DockPanel.Dock="Right" Content="搜索" FontSize="24" Margin="0,5,10,5" Width="70" Height="50" Click="logistics_Search_Click"/>
+                </DockPanel>
+            </StackPanel>
+
+
+            <!--设备信息显示-->
+            <Grid Grid.Row="0" Grid.RowSpan="2"  Grid.Column="3" HorizontalAlignment="Center" Width="auto">
+
+                <Grid.Background>
+                    <ImageBrush
+                        ImageSource="/image/background/bc3.png"
+                        ></ImageBrush>
+                </Grid.Background>
+                <TextBlock Text="企业列表" FontSize="24" Foreground="White" TextAlignment="Left" Margin="20, 15, 10, 15" Width="340"/>
+                <ScrollViewer Width="370" Height="auto"  HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" Margin="0,60,0,20">
+                    <StackPanel x:Name="company_List">
+                    </StackPanel>
+                </ScrollViewer>
+                
+            </Grid>
+
+            <!--设备状态显示-->
+            <Grid  Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3" Margin="10,0,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="*" ></RowDefinition>
+                    <RowDefinition Height="*" ></RowDefinition>
+                    <RowDefinition Height="*" ></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition ></ColumnDefinition>
+                    <ColumnDefinition ></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid.Background>
+                    <!--<ImageBrush ImageSource="/image/background/bc_frame.png"></ImageBrush>-->
+                    <LinearGradientBrush>
+                        <GradientStop Color="#3399CC" Offset="0.9"></GradientStop>
+                        <GradientStop Color="#167158" Offset="0.1"></GradientStop>
+                    </LinearGradientBrush>
+                </Grid.Background>
+
+                <Grid Grid.ColumnSpan="2" Margin="50,30,50,20">
+                    <!--页面头定义-->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Name="title_company" Grid.ColumnSpan="2" Text="企业名称" HorizontalAlignment="Center" FontSize="32" Foreground="White"></TextBlock>
+                    <TextBlock Text="设备详情：" HorizontalAlignment="Left" Grid.Row="1" FontSize="20" Foreground="White" />
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="返回" HorizontalAlignment="Right" FontSize="20" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave" ></TextBlock>
+                </Grid>
+                <!--页面头定义结束-->
+                <Grid Name="EQP_list" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="5" Grid.Row="1" Margin="50,0,50,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/image/equipmentDetail/E003.png" Grid.Row="0" Grid.Column="0" Height="auto" Margin="0,0,20,20" ></Image>
+                    <Image Source="/image/equipmentDetail/E01.png" Grid.Row="0" Grid.Column="1" Height="auto" Margin="20,0,0,20" ></Image>
+                    <Image Source="/image/equipmentDetail/E10.png" Grid.Row="1" Grid.Column="0"  Height="auto" Margin="0,0,20,20" />
+                    <Image Source="/image/equipmentDetail/E11.png" Grid.Row="1" Grid.Column="1"  Height="auto" Margin="20,0,0,20"></Image>
+                    <Image Source="/image/equipmentDetail/E33.png" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0,18,0,22"></Image>
+                    <TextBlock HorizontalAlignment="Left"  Margin="273,10,0,0" TextWrapping="Wrap" Text="机种" VerticalAlignment="Top" Width="43" Height="22" FontSize="18" FontWeight="Bold" Foreground="#FFFBF7F7"/>
+                    <TextBlock Name="model" HorizontalAlignment="Left" Margin="24,47,0,0" TextWrapping="Wrap" Text="AD30LSDK1" VerticalAlignment="Top" Height="21" Width="105" FontSize="18" Foreground="#FF9DE4A0"/>
+                    <TextBlock Name="category" HorizontalAlignment="Left" Margin="273,47,0,0" TextWrapping="Wrap" Text="EMD" VerticalAlignment="Top" Height="21" Width="43" FontSize="18" Foreground="#FFECF1EC"/>
+                    <TextBlock Name="mark_on_off" HorizontalAlignment="Left" Margin="203,46,0,0" Grid.Row="1" TextWrapping="Wrap" Text="online" VerticalAlignment="Top" Foreground="#FFC7F05A"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="204,66,0,0" Grid.Row="1" TextWrapping="Wrap" Text="机器状态：" VerticalAlignment="Top" Foreground="#FF6FCB54"/>
+                    <TextBlock Name="operating_status" HorizontalAlignment="Left" Margin="264,66,0,0" Grid.Row="1" TextWrapping="Wrap" Text="运行中" VerticalAlignment="Top" Foreground="#FF43852A"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="204,89,0,0" Grid.Row="1" TextWrapping="Wrap" Text="待机中：" VerticalAlignment="Top" Foreground="#FF9093DC"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="204,109,0,0" Grid.Row="1" TextWrapping="Wrap" Text="运行中：" VerticalAlignment="Top" Foreground="#FF4AC150"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="204,128,0,0" Grid.Row="1" TextWrapping="Wrap" Text="间歇停止中：" VerticalAlignment="Top" Foreground="#FFC5B028"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="204,148,0,0" Grid.Row="1" TextWrapping="Wrap" Text="异常停止中：" VerticalAlignment="Top" Foreground="#FFE63928"/>
+                    <TextBlock Name="standby_rate" HorizontalAlignment="Left" Margin="264,89,0,0" Grid.Row="1" TextWrapping="Wrap" Text="20%" VerticalAlignment="Top" Foreground="#FF6D8BB6"/>
+                    <TextBlock Name="run_rate" HorizontalAlignment="Left" Margin="264,109,0,0" Grid.Row="1" TextWrapping="Wrap" Text="60%" VerticalAlignment="Top" Foreground="#FF41BB52"/>
+                    <TextBlock Name="stop_rate" HorizontalAlignment="Left" Margin="276,128,0,0" Grid.Row="1" TextWrapping="Wrap" Text="10%" VerticalAlignment="Top" Foreground="#FFDAAD36"/>
+                    <TextBlock Name="abnormal_rate" HorizontalAlignment="Left" Margin="276,148,0,0" Grid.Row="1" TextWrapping="Wrap" Text="10%" VerticalAlignment="Top" Foreground="#FFB81C1C"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="58,10,0,0" TextWrapping="Wrap" Text="统计时间选择" VerticalAlignment="Top" Height="22" Width="116" FontSize="18" Foreground="#FFF7EBEB"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="58,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="19" Width="112" FontSize="16" Foreground="#FF53A41A"><Run Text="过去一周统计"/><Run Text=""/><Run Text="："/></TextBlock>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="404,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="19" Width="113" FontSize="16" Foreground="#FF53A41A"><Run Text="过去一月统计"/><Run Text="："/></TextBlock>
+                    <Rectangle Grid.Column="1" Fill="#FF0D6A11" HorizontalAlignment="Left" Height="26" Margin="58,106,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="607"/>
+                    <Rectangle Name="E01_standby" Grid.Column="1" Fill="#FF6464B8" HorizontalAlignment="Left" Height="26" Margin="58,106,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="379"/>
+                    <Rectangle Name="E01_stop" Grid.Column="1" Fill="#FFC3A418" HorizontalAlignment="Left" Height="26" Margin="58,106,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="264"/>
+                    <Rectangle Name="E01_abnormal" Grid.Column="1" Fill="#FF973A31" HorizontalAlignment="Left" Height="26" Margin="58,106,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="164"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="566,28,0,0" Grid.Row="1" TextWrapping="Wrap" Text="区间统计结果" VerticalAlignment="Top" Width="133" Foreground="#FFF7F2F2" FontSize="18"/>
+                    <Rectangle Grid.Column="1" Fill="#FF973A31" HorizontalAlignment="Left" Height="26" Margin="120,66,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="52"/>
+                    <Rectangle Grid.Column="1" Fill="#FFC3A418" HorizontalAlignment="Left" Height="26" Margin="290,66,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="49"/>
+                    <Rectangle Grid.Column="1" Fill="#FF6464B8" HorizontalAlignment="Left" Height="26" Margin="449,66,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="50"/>
+                    <Rectangle Grid.Column="1" Fill="#FF0D6A11" HorizontalAlignment="Left" Height="26" Margin="631,66,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="47"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="59,71,0,0" Grid.Row="1" TextWrapping="Wrap" Text="异常时间" VerticalAlignment="Top" Foreground="#FFB82121"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="231,71,0,0" Grid.Row="1" TextWrapping="Wrap" Text="停止时间" VerticalAlignment="Top" Foreground="#FFD38E15"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="389,71,0,0" Grid.Row="1" TextWrapping="Wrap" Text="待机时间" VerticalAlignment="Top" Foreground="#FF5B77B2"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="566,71,0,0" Grid.Row="1" TextWrapping="Wrap" Text="运行时间" VerticalAlignment="Top" Foreground="#FF26A43D"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="389,80,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFEEDE3E" FontSize="16"><Run Text="年度运行"/><Run Text="时间占比"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Margin="91,117,0,0" Grid.Row="3" TextWrapping="Wrap" Text="10%" VerticalAlignment="Top" Foreground="#FF42C5B3"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="91,89,0,0" Grid.Row="3" TextWrapping="Wrap" Text="20%" VerticalAlignment="Top" Foreground="#FF42C5B3"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="91,61,0,0" Grid.Row="3" TextWrapping="Wrap" Text="30%" VerticalAlignment="Top" Foreground="#FF42C5B3"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="91,33,0,0" Grid.Row="3" TextWrapping="Wrap" Text="40%" VerticalAlignment="Top" Foreground="#FF42C5B3"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="91,5,0,0" Grid.Row="3" TextWrapping="Wrap" Text="50%" VerticalAlignment="Top" Foreground="#FF42C5B3"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="91,224,0,0" Grid.Row="2" TextWrapping="Wrap" Text="60%" VerticalAlignment="Top" Foreground="#FF42C5B3"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="91,196,0,0" Grid.Row="2" TextWrapping="Wrap" Text="70%" Foreground="#FF42C5B3" Height="15" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="91,168,0,0" Grid.Row="2" TextWrapping="Wrap" Text="80%" VerticalAlignment="Top" Foreground="#FF42C5B3"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="91,140,0,0" Grid.Row="2" TextWrapping="Wrap" Text="90%" VerticalAlignment="Top" Foreground="#FF42C5B3"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="91,112,0,0" Grid.Row="2" TextWrapping="Wrap" Text="100%" VerticalAlignment="Top" Foreground="#FF42C5B3"/>
+                    <TextBlock Name="data1" HorizontalAlignment="Left" Margin="154,177,0,0" Grid.Row="3" TextWrapping="Wrap" Text="日期1" VerticalAlignment="Top" Foreground="#FF86A6C5" RenderTransformOrigin="1.176,0.492"/>
+                    <TextBlock Name="data2" HorizontalAlignment="Left" Margin="229,177,0,0" Grid.Row="3" TextWrapping="Wrap" Text="日期1" VerticalAlignment="Top" Foreground="#FF86A6C5" RenderTransformOrigin="0.113,0.4"/>
+                    <TextBlock Name="data3" HorizontalAlignment="Left" Margin="304,177,0,0" Grid.Row="3" TextWrapping="Wrap" Text="日期1" VerticalAlignment="Top" Foreground="#FF86A6C5"/>
+                    <TextBlock Name="data4" HorizontalAlignment="Left" Margin="22,177,0,0" Grid.Row="3" TextWrapping="Wrap" Text="日期1" VerticalAlignment="Top" Foreground="#FF86A6C5" Grid.Column="1"/>
+                    <TextBlock Name="data5" HorizontalAlignment="Left" Margin="94,177,0,0" Grid.Row="3" TextWrapping="Wrap" Text="日期1" VerticalAlignment="Top" Foreground="#FF86A6C5" Grid.Column="1"/>
+                    <TextBlock Name="data6" HorizontalAlignment="Left" Margin="169,177,0,0" Grid.Row="3" TextWrapping="Wrap" Text="日期1" VerticalAlignment="Top" Foreground="#FF86A6C5" Grid.Column="1"/>
+                    <TextBlock Name="data7" HorizontalAlignment="Left" Margin="244,180,0,0" Grid.Row="3" TextWrapping="Wrap" Text="日期1" VerticalAlignment="Top" Foreground="#FF86A6C5" Grid.Column="1" RenderTransformOrigin="1.355,0.267"/>
+                    <TextBlock Name="data8" HorizontalAlignment="Left" Margin="319,177,0,0" Grid.Row="3" TextWrapping="Wrap" Text="日期1" VerticalAlignment="Top" Foreground="#FF86A6C5" Grid.Column="1" Width="33"/>
+                    <TextBlock Name="data9" HorizontalAlignment="Left" Margin="394,177,0,0" Grid.Row="3" TextWrapping="Wrap" Text="日期1" VerticalAlignment="Top" Foreground="#FF86A6C5" Grid.Column="1" Width="37"/>
+                    <TextBlock Name="data10" HorizontalAlignment="Left" Margin="469,177,0,0" Grid.Row="3" TextWrapping="Wrap" Text="日期1" VerticalAlignment="Top" Foreground="#FF86A6C5" Grid.Column="1"/>
+                    <TextBlock Name="data11" HorizontalAlignment="Left" Margin="544,177,0,0" Grid.Row="3" TextWrapping="Wrap" Text="日期1" VerticalAlignment="Top" Foreground="#FF86A6C5" Grid.Column="1"/>
+                    <TextBlock Name="data12" HorizontalAlignment="Left" Margin="619,177,0,0" Grid.Row="3" TextWrapping="Wrap" Text="日期1" VerticalAlignment="Top" Foreground="#FF86A6C5" Grid.Column="1" Width="35"/>
+                    <Button Name="bt_month" Content="刷新" Grid.Column="1" HorizontalAlignment="Left" Margin="200,49,0,0" VerticalAlignment="Top" Width="74" RenderTransformOrigin="0.113,0.579" Click="Button_Click_1" Background="#FF27AC27"/>
+                    <Button Name="bt_week" Content="刷新" Grid.Column="1" HorizontalAlignment="Left" Margin="538,49,0,0" VerticalAlignment="Top" Width="76" Click="bt_week_Click" Background="#FF229E22"/>
+
+                    <Rectangle Name="char1" HorizontalAlignment="Left" Height="282" Margin="154,158,0,0" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="31" Grid.RowSpan="2">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="1"/>
+                                <GradientStop Color="#FF8644E6"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle x:Name="char1_Copy" HorizontalAlignment="Left" Height="282" Margin="233,158,0,0" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="31" Grid.RowSpan="2">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="1"/>
+                                <GradientStop Color="#FF8644E6"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle x:Name="char1_Copy1" HorizontalAlignment="Left" Height="282" Margin="306,158,0,0" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="31" Grid.RowSpan="2">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="1"/>
+                                <GradientStop Color="#FF8644E6"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle x:Name="char1_Copy2" HorizontalAlignment="Left" Height="282" Margin="46,158,0,0" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="31" Grid.RowSpan="2" Grid.Column="1">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="1"/>
+                                <GradientStop Color="#FF8644E6"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle x:Name="char1_Copy3" HorizontalAlignment="Left" Height="282" Margin="139,158,0,0" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="31" Grid.RowSpan="2" Grid.Column="1">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="1"/>
+                                <GradientStop Color="#FF8644E6"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle x:Name="char1_Copy4" HorizontalAlignment="Left" Height="282" Margin="204,148,0,0" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="31" Grid.RowSpan="2" Grid.Column="1">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="1"/>
+                                <GradientStop Color="#FF8644E6"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle x:Name="char1_Copy5" HorizontalAlignment="Left" Height="282" Margin="296,148,0,0" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="31" Grid.RowSpan="2" Grid.Column="1">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="1"/>
+                                <GradientStop Color="#FF8644E6"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle x:Name="char1_Copy6" HorizontalAlignment="Left" Height="282" Margin="389,148,0,0" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="33" Grid.RowSpan="2" Grid.Column="1">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="1"/>
+                                <GradientStop Color="#FF8644E6"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle x:Name="char1_Copy7" HorizontalAlignment="Left" Height="282" Margin="462,148,0,0" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="28" Grid.RowSpan="2" Grid.Column="1">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="1"/>
+                                <GradientStop Color="#FF8644E6"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle x:Name="char1_Copy8" HorizontalAlignment="Left" Height="282" Margin="524,148,0,0" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="31" Grid.RowSpan="2" Grid.Column="1">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="1"/>
+                                <GradientStop Color="#FF8644E6"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle x:Name="char1_Copy9" HorizontalAlignment="Left" Height="282" Margin="588,148,0,0" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="31" Grid.RowSpan="2" Grid.Column="1">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="1"/>
+                                <GradientStop Color="#FF8644E6"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle x:Name="char1_Copy10" HorizontalAlignment="Left" Height="282" Margin="643,148,0,0" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="31" Grid.RowSpan="2" Grid.Column="1">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black" Offset="1"/>
+                                <GradientStop Color="#FF8644E6"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="719,209,0,0" Grid.Row="3" TextWrapping="Wrap" Text="月份" VerticalAlignment="Top" Foreground="#FFACC2DC" FontSize="14"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="43,111,0,0" Grid.Row="2" TextWrapping="Wrap" Text="百分比" VerticalAlignment="Top" Foreground="#FFDBF1DE" FontSize="14"/>
+
+                </Grid>
+
+
+            </Grid>
+
+            <!--加盟企业年度图-->
+            <!--<Image Source="/image/company.jpg" Grid.Row="2" Grid.Column="1" Margin="20,10,10,10" Height="auto">
+
+            </Image>
+            -->
+            <!--订单年度图-->
+            <!--
+            <Image Source="/image/order.jpg" Grid.Row="2" Grid.Column="2" Margin="10" Height="auto">
+
+            </Image>
+            -->
+            <!--运转设备占比-->
+            <!--
+            <Image Source="/image/run_ratio.jpg" Grid.Row="2" Grid.Column="3" Margin="14,32,30,30"/>-->
+        </Grid>
+    </Grid>
+</Page>

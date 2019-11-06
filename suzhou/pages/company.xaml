@@ -1,0 +1,140 @@
+﻿<Page x:Class="suzhou.pages.company"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:suzhou.pages"
+      mc:Ignorable="d" 
+      Foreground="White"
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="platform" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid Margin="0,100,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <!--企业信息汇总-->
+            <StackPanel Grid.Row="0" Grid.RowSpan="1" VerticalAlignment="top" Height="300">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="/image/background/bc1.png">
+                    </ImageBrush>
+                </StackPanel.Background>
+                <TextBlock x:Name="company_name" Text="企业统计信息汇总" FontSize="24" Margin="20,10,10,10"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="订单数" FontSize="24" Margin="30,20,0,10"/>
+                    <TextBlock x:Name="ord_num" Grid.Column="1" Text="0" FontSize="24" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="设备数" FontSize="24" Margin="30,10,0,10"/>
+                    <TextBlock x:Name="eqp_num" Grid.Column="1" Text="0" FontSize="24" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="运行设备数" FontSize="24" Margin="30,10,0,10"/>
+                    <TextBlock x:Name="excute_ord_num" Grid.Column="1" Text="0" FontSize="24" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                </Grid>
+            </StackPanel>
+            <!--查询模块-->
+            <StackPanel Grid.Row="1" Grid.RowSpan="2" Margin="0,10,0,0" Width="auto">
+
+                <StackPanel.Background>
+                    <ImageBrush
+                        ImageSource="/image/background/bc2.png"
+                        ></ImageBrush>
+                </StackPanel.Background>
+                <TextBlock Text="查询模块" FontSize="24" Margin="20,15,10,10" />
+                <TextBlock Text="企业查询" FontSize="24" Margin="30,20,10,10"/>
+                <DockPanel Width="auto">
+                    <TextBox DockPanel.Dock="Left" Text="" FontSize="28" Margin="30,10,10,10" Width="240" Height="50" Name="et1"/>
+                    <Button DockPanel.Dock="Right" Content="搜索" FontSize="24" Margin="0,5,10,5" Width="70" Height="50" Click="company_Search_Click"/>
+                </DockPanel>
+                <TextBlock Text="订单查询" FontSize="24" Margin="30,10,10,10"/>
+                <DockPanel Width="auto">
+                    <TextBox DockPanel.Dock="Left" Text="" FontSize="28" Margin="30,10,10,10" Width="240" Height="50" Name="et2"/>
+                    <Button DockPanel.Dock="Right" Content="搜索" FontSize="24" Margin="0,5,10,5" Width="70" Height="50" Click="order_Search_Click"/>
+                </DockPanel>
+                <TextBlock Text="模具查询" FontSize="24" Margin="30,10,10,10" />
+                <DockPanel Width="auto">
+                    <TextBox DockPanel.Dock="Left" Text="" FontSize="28" Margin="30,10,10,10" Width="240" Height="50" Name="et3"/>
+                    <Button DockPanel.Dock="Right" Content="搜索" FontSize="24" Margin="0,5,10,5" Width="70" Height="50" Click="mould_Search_Click"/>
+                </DockPanel>
+                <TextBlock Text="物流查询" FontSize="24" Margin="30,10,10,10"/>
+                <DockPanel Width="auto">
+                    <TextBox DockPanel.Dock="Left" Text="" FontSize="28" Margin="30,10,10,10" Width="240" Height="50" Name="et4"/>
+                    <Button DockPanel.Dock="Right" Content="搜索" FontSize="24" Margin="0,5,10,5" Width="70" Height="50" Click="logistics_Search_Click"/>
+                </DockPanel>
+            </StackPanel>
+
+            <!--本厂设备 网页内嵌-->
+            <Grid x:Name="pageGrid" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                <WebBrowser x:Name="webBrowser" Margin="20,20,10,0" />
+            </Grid>
+            
+            <!--公司和旗下设备-->
+            <Grid x:Name="main" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="10,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="0,0,0,0">
+                    <Grid.Background>
+                        <!--<ImageBrush
+                        ImageSource="/image/background/bc_frame0.png"
+                        ></ImageBrush>-->
+                        <LinearGradientBrush>
+                            <GradientStop Color="#3399CC" Offset="0.9"></GradientStop>
+                            <GradientStop Color="#167158" Offset="0.1"></GradientStop>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                </Grid>
+
+                <TextBlock x:Name="company_Name" Grid.ColumnSpan="2" FontSize="48" Foreground="White" TextAlignment="Center" Margin="0,30,0,0"></TextBlock>
+                <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" Margin="0,20,0,30" VerticalScrollBarVisibility="Hidden">
+                    <WrapPanel x:Name="equipments"></WrapPanel>
+                </ScrollViewer>
+            </Grid>
+
+            <!--公司列表-->
+            <Grid  Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" Grid.ColumnSpan="1" Margin="10,0,0,0">
+                <Grid.Background>
+                    <ImageBrush
+                        ImageSource="/image/background/bc3.png"
+                        ></ImageBrush>
+                </Grid.Background>
+                <TextBlock Text="企业列表" FontSize="24" Foreground="White" TextAlignment="Left" Margin="20, 15, 10, 15" Width="340"/>
+                <ScrollViewer Width="370" Height="auto"  HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" Margin="0,60,0,20">
+                    <StackPanel x:Name="companyList">
+                    </StackPanel>
+                </ScrollViewer>
+
+            </Grid>
+
+        </Grid>
+    </Grid>
+</Page>
