@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\suzhou"
   ],
-  "SelectedNode": "\\suzhou.sln",
+  "SelectedNode": "\\suzhou\\suzhou.csproj",
   "PreviewInSolutionExplorer": false
 }
