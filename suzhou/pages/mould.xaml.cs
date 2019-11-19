@@ -22,7 +22,7 @@ namespace suzhou.pages
         List<List<String>> partData = new List<List<string>>(); // 查询出的日期段内的数据列表
 
         // 数据库连接
-        String connectServer = "server=121.239.200.28; port=3306; user=root; password=Szxtzx06090512.@; database=mould;";
+        String connectServer = "server=122.112.149.16; port=3306; user=root; password=Szxtzx06090512.@; database=mould;";
         String connectStr = "server=127.0.0.1; port=3306; user=root; password=123456; database=displayptf;";
 
         public SeriesCollection SeriesCollection1 { get; set; }
