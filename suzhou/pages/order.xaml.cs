@@ -564,6 +564,7 @@ namespace suzhou.pages
 
             }
             interval = max / 10 + 1;
+            float xn = 27 / interval;
             for (int j = 0; j < 10; ++j)
             {
                 TextBlock Tb = new TextBlock();
@@ -575,30 +576,30 @@ namespace suzhou.pages
 
             }
             int j1 = 0;
-            chart2_Re.Height = val[j1] * 27;
-            chart2_Re.Margin = new Thickness(64 + 40 * j1, 333 - val[j1++] * 27, 0, 0);
-            chart2_Re_Copy.Height = val[j1] * 27;
-            chart2_Re_Copy.Margin = new Thickness(64 + 40 * j1, 333 - val[j1++] * 27, 0, 0);
-            chart2_Re_Copy1.Height = val[j1] * 27;
-            chart2_Re_Copy1.Margin = new Thickness(64 + 40 * j1, 333 - val[j1++] * 27, 0, 0);
-            chart2_Re_Copy2.Height = val[j1] * 27;
-            chart2_Re_Copy2.Margin = new Thickness(64 + 40 * j1, 333 - val[j1++] * 27, 0, 0);
-            chart2_Re_Copy3.Height = val[j1] * 27;
-            chart2_Re_Copy3.Margin = new Thickness(64 + 40 * j1, 333 - val[j1++] * 27, 0, 0);
-            chart2_Re_Copy4.Height = val[j1] * 27;
-            chart2_Re_Copy4.Margin = new Thickness(64 + 40 * j1, 333 - val[j1++] * 27, 0, 0);
-            chart2_Re_Copy5.Height = val[j1] * 27;
-            chart2_Re_Copy5.Margin = new Thickness(64 + 40 * j1, 333 - val[j1++] * 27, 0, 0);
-            chart2_Re_Copy6.Height = val[j1] * 27;
-            chart2_Re_Copy6.Margin = new Thickness(64 + 40 * j1, 333 - val[j1++] * 27, 0, 0);
-            chart2_Re_Copy7.Height = val[j1] * 27;
-            chart2_Re_Copy7.Margin = new Thickness(64 + 40 * j1, 333 - val[j1++] * 27, 0, 0);
-            chart2_Re_Copy8.Height = val[j1] * 27;
-            chart2_Re_Copy8.Margin = new Thickness(64 + 40 * j1, 333 - val[j1++] * 27, 0, 0);
-            chart2_Re_Copy9.Height = val[j1] * 27;
-            chart2_Re_Copy9.Margin = new Thickness(64 + 40 * j1, 333 - val[j1++] * 27, 0, 0);
-            chart2_Re_Copy10.Height = val[j1] * 27;
-            chart2_Re_Copy10.Margin = new Thickness(64 + 40 * j1, 333 - val[j1++] * 27, 0, 0);
+            chart2_Re.Height = val[j1] * xn;
+            chart2_Re.Margin = new Thickness(64 + 40 * j1, 333 - val[j1++] * xn, 0, 0);
+            chart2_Re_Copy.Height = val[j1] * xn;
+            chart2_Re_Copy.Margin = new Thickness(64 + 40 * j1, 333 - val[j1++] * xn, 0, 0);
+            chart2_Re_Copy1.Height = val[j1] * xn;
+            chart2_Re_Copy1.Margin = new Thickness(64 + 40 * j1, 333 - val[j1++] * xn, 0, 0);
+            chart2_Re_Copy2.Height = val[j1] * xn;
+            chart2_Re_Copy2.Margin = new Thickness(64 + 40 * j1, 333 - val[j1++] * xn, 0, 0);
+            chart2_Re_Copy3.Height = val[j1] * xn;
+            chart2_Re_Copy3.Margin = new Thickness(64 + 40 * j1, 333 - val[j1++] * xn, 0, 0);
+            chart2_Re_Copy4.Height = val[j1] * xn;
+            chart2_Re_Copy4.Margin = new Thickness(64 + 40 * j1, 333 - val[j1++] * xn, 0, 0);
+            chart2_Re_Copy5.Height = val[j1] * xn;
+            chart2_Re_Copy5.Margin = new Thickness(64 + 40 * j1, 333 - val[j1++] * xn, 0, 0);
+            chart2_Re_Copy6.Height = val[j1] * xn;
+            chart2_Re_Copy6.Margin = new Thickness(64 + 40 * j1, 333 - val[j1++] * xn, 0, 0);
+            chart2_Re_Copy7.Height = val[j1] * xn;
+            chart2_Re_Copy7.Margin = new Thickness(64 + 40 * j1, 333 - val[j1++] * xn, 0, 0);
+            chart2_Re_Copy8.Height = val[j1] * xn;
+            chart2_Re_Copy8.Margin = new Thickness(64 + 40 * j1, 333 - val[j1++] * xn, 0, 0);
+            chart2_Re_Copy9.Height = val[j1] * xn;
+            chart2_Re_Copy9.Margin = new Thickness(64 + 40 * j1, 333 - val[j1++] * xn, 0, 0);
+            chart2_Re_Copy10.Height = val[j1] * xn;
+            chart2_Re_Copy10.Margin = new Thickness(64 + 40 * j1, 333 - val[j1++] * xn, 0, 0);
         }
 
         private void Chartpie_EQP()

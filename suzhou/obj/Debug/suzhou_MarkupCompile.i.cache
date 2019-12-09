@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Administrator\Desktop\suzhou\suzhou\obj\Debug\
+C:\Users\byb\Desktop\git\bug修复V1\suzhou-1-master\suzhou-1-master\suzhou\obj\Debug\
 suzhou
 none
 false
 DEBUG;TRACE
-C:\Users\Administrator\Desktop\suzhou\suzhou\App.xaml
+C:\Users\byb\Desktop\git\bug修复V1\suzhou-1-master\suzhou-1-master\suzhou\App.xaml
 9-1028911526
 3673732548
-18-473534471
-80483258292
+18-1584757820
+80-869485314
 pages\company_EQP.xaml;Login.xaml;Platform.xaml;Logout.xaml;pages\order.xaml;pages\mould.xaml;pages\logistics.xaml;pages\company.xaml;pages\home.xaml;
 
-False
+True
 

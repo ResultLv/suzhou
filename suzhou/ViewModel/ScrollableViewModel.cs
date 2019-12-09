@@ -33,7 +33,7 @@ namespace suzhou.ViewModel
     class ScrollableViewModel : INotifyPropertyChanged
     {
         // 数据库连接
-        String connectServer = "server=121.239.200.28; port=3306; user=root; password=Szxtzx06090512.@; database=mould;";
+        String connectServer = "server=122.112.149.16; port=3306; user=root; password=Szxtzx06090512.@; database=mould;";
 
         // 滚动折线图属性
         private double _points;
